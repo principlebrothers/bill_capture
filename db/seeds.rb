@@ -7,3 +7,13 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+20.times do
+  Faker::Company.unique.clear
+  company = Company.create!(
+    name: Faker::Company.unique.name)
+
+  5.times do
+    Invoice.create!(company: company, number: Faker::Number.unique.number(digits: 6))
+  end
+end

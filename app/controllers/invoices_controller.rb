@@ -5,7 +5,7 @@ class InvoicesController < ApplicationController
 
   def index
     @invoices = Invoice.retrieve_invoices
-    render inertia: 'Invoice/Index', props: {
+    render inertia: "Invoice/Index", props: {
       invoices: @invoices.map do |invoice|
         serialize_index_invoice(invoice)
       end
@@ -13,14 +13,14 @@ class InvoicesController < ApplicationController
   end
 
   def show
-    render inertia: 'Invoice/Show', props: {
+    render inertia: "Invoice/Show", props: {
       invoice: serialize_invoice(@invoice)
     }
   end
 
   def new
     @invoice = Invoice.new
-    render inertia: 'Invoice/New', props: {
+    render inertia: "Invoice/New", props: {
       invoice: serialize_invoice(@invoice),
       companies: Company.all.map do |company|
         {
@@ -33,7 +33,7 @@ class InvoicesController < ApplicationController
   end
 
   def edit
-    render inertia: 'Invoice/Edit', props: {
+    render inertia: "Invoice/Edit", props: {
       invoice: serialize_invoice(@invoice)
     }
   end
@@ -78,6 +78,6 @@ class InvoicesController < ApplicationController
     end
 
     def serialize_index_invoice(invoice)
-      invoice.as_json(only: [:id, :number, :company_name, :check_number])
+      invoice.as_json(only: [ :id, :number, :company_name, :check_number ])
     end
 end

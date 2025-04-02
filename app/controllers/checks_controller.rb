@@ -22,7 +22,7 @@ class ChecksController < ApplicationController
 
   def new
     @check = Check.new
-    render inertia: 'Checks/New', props: {
+    render inertia: "Checks/New", props: {
       company: @company.as_json,
       check: serialize_check(@check),
       errors: {}
@@ -34,12 +34,12 @@ class ChecksController < ApplicationController
   def create
     @check = @company.checks.build(check_params.except(:invoice_numbers))
 
-    invoice_numbers = check_params[:invoice_numbers].split(',').map(&:strip)
+    invoice_numbers = check_params[:invoice_numbers].split(",").map(&:strip)
     invoices = @company.invoices.where(number: invoice_numbers)
 
     if invoices.count != invoice_numbers.count
       missing = invoice_numbers - invoices.pluck(:number)
-      return render inertia: 'Checks/New', props: {
+      return render inertia: "Checks/New", props: {
         company: @company.as_json,
         check: @check.as_json,
         errors: { invoice_numbers: "Could not find invoices: #{missing.join(', ')}" }
@@ -48,9 +48,9 @@ class ChecksController < ApplicationController
 
     if @check.save
       @check.invoices = invoices
-      redirect_to companies_url, notice: 'Check created successfully'
+      redirect_to companies_url, notice: "Check created successfully"
     else
-      render inertia: 'Checks/New', props: {
+      render inertia: "Checks/New", props: {
         company: @company.as_json,
         check: serialize_check(@check),
         errors: @check.errors.as_json
@@ -60,7 +60,7 @@ class ChecksController < ApplicationController
 
   def update
     if @check.update(check_params)
-      redirect_to @check, notice: 'Check was successfully updated.'
+      redirect_to @check, notice: "Check was successfully updated."
     else
       render :edit
     end
@@ -68,7 +68,7 @@ class ChecksController < ApplicationController
 
   def destroy
     @check.destroy
-    redirect_to checks_url, notice: 'Check was successfully destroyed.'
+    redirect_to checks_url, notice: "Check was successfully destroyed."
   end
 
   private
@@ -82,7 +82,7 @@ class ChecksController < ApplicationController
   end
 
   def serialize_check(check)
-    check.as_json(only: [:id, :number, :image, :company_id], include: {
+    check.as_json(only: [ :id, :number, :image, :company_id ], include: {
       invoices: {
         only: [ :id, :number ]
       }

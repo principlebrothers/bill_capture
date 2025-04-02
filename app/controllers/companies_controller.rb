@@ -6,7 +6,7 @@ class CompaniesController < ApplicationController
   # GET /companies
   def index
     @companies = Company.all
-    render inertia: 'Company/Index', props: {
+    render inertia: "Company/Index", props: {
       companies: @companies.map do |company|
         serialize_company(company)
       end
@@ -15,7 +15,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1
   def show
-    render inertia: 'Company/Show', props: {
+    render inertia: "Company/Show", props: {
       company: serialize_company(@company)
     }
   end
@@ -23,14 +23,14 @@ class CompaniesController < ApplicationController
   # GET /companies/new
   def new
     @company = Company.new
-    render inertia: 'Company/New', props: {
+    render inertia: "Company/New", props: {
       company: serialize_company(@company)
     }
   end
 
   # GET /companies/1/edit
   def edit
-    render inertia: 'Company/Edit', props: {
+    render inertia: "Company/Edit", props: {
       company: serialize_company(@company)
     }
   end

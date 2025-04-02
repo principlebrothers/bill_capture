@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  get "inertia-example", to: "inertia_example#index"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
+  resources :invoices
+  resources :companies do
+    resources :checks, only: [ :new, :create ]
+  end
+  resources :checks, only: [ :index ]
+  root "companies#index"
   get "up" => "rails/health#show", as: :rails_health_check
-  # root "posts#index"
 end

@@ -1,6 +1,7 @@
 import { createInertiaApp } from '@inertiajs/react'
 import { createElement } from 'react'
 import { createRoot } from 'react-dom/client'
+import Layout from '../components/Layout.jsx'
 
 createInertiaApp({
   // Set default page title
@@ -21,6 +22,8 @@ createInertiaApp({
     if (!page) {
       console.error(`Missing Inertia page component: '${name}.jsx'`)
     }
+
+    page.default.layout = page.default.layout ?? ((page) => createElement(Layout, { children: page }))
 
     // To use a default layout, import the Layout component
     // and use the following lines.

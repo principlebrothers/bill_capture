@@ -11,7 +11,7 @@ function Layout({ children }) {
               <Link
                 href='/companies'
                 className={`hover:text-gray-300 hover:underline underline-offset-4 font-medium transition duration-200 ease-in-out transform hover:scale-105 ${
-                  url === '/companies'
+                  url === '/companies'|| url === '/'
                     ? 'underline underline-offset-4 text-white'
                     : 'text-yellow-500'
                 }`}

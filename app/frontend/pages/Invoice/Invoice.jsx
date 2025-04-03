@@ -1,6 +1,6 @@
 export default function Invoice({ invoice }) {
   return (
-    <div className='flex items-center justify-between gap-4 p-2 border border-gray-300 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200'>
+    <div className='flex items-center justify-between gap-4 p-2 border border-blue-300 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200'>
       <p className='flex flex-col gap-2'>
         <span className='text-gray-500'>Invoice</span>
         <span className='text-lg font-bold'>

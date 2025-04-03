@@ -29,7 +29,12 @@ const useWebcamCapture = () => {
     <>
       {!image ? (
         <div className='flex flex-col items-center'>
-          <Webcam audio={false} ref={webcamRef} screenshotFormat='image/jpeg' />
+          <Webcam
+            audio={false}
+            ref={webcamRef}
+            screenshotFormat='image/jpeg'
+            videoConstraints={{ facingMode: 'environment' }}
+          />
 
           <div className='text-sm mt-2 font-bold text-gray-700'>
             Ensure the check is well-lit and in focus.

@@ -1,4 +1,5 @@
 import { useForm } from '@inertiajs/react';
+import Button from '../../components/Button';
 
 export default function Form({ invoice, companies, onSubmit, submitText }) {
   const form = useForm({
@@ -13,20 +14,15 @@ export default function Form({ invoice, companies, onSubmit, submitText }) {
     onSubmit(form);
   };
 
+  const isFormValid = data.number.trim() !== '' && data.company_id !== '';
+
   return (
     <form
       onSubmit={handleSubmit}
       style={{ fontFamily: 'Arial, sans-serif', color: '#333' }}
     >
-      <div style={{ marginBottom: '1rem' }}>
-        <label
-          style={{
-            display: 'block',
-            fontWeight: 'bold',
-            marginBottom: '0.5rem',
-          }}
-          htmlFor='number'
-        >
+      <div className='mb-4'>
+        <label className='block text-gray-700 mb-2' htmlFor='number'>
           Number
         </label>
         <input
@@ -35,13 +31,11 @@ export default function Form({ invoice, companies, onSubmit, submitText }) {
           id='number'
           value={data.number}
           onChange={(e) => setData('number', e.target.value)}
-          style={{
-            width: '100%',
-            padding: '0.5rem',
-            border: '1px solid #ccc',
-            borderRadius: '4px',
-            fontSize: '1rem',
-          }}
+          className='w-full p-2 border border-gray-300 rounded-md font-normal'
+          placeholder='Enter invoice number'
+          required
+          autoComplete='off'
+          autoFocus
         />
         {errors.number && (
           <div style={{ color: 'red', marginTop: '0.5rem' }}>
@@ -50,10 +44,7 @@ export default function Form({ invoice, companies, onSubmit, submitText }) {
         )}
       </div>
       <div className='mb-4'>
-        <label
-          className='block text-gray-700 mb-2'
-          htmlFor='company_id'
-        >
+        <label className='block text-gray-700 mb-2' htmlFor='company_id'>
           Company
         </label>
         <select
@@ -77,6 +68,16 @@ export default function Form({ invoice, companies, onSubmit, submitText }) {
         )}
       </div>
       <div>
+        <Button
+          type='submit'
+          className={`bg-blue-500 text-white px-4 py-2 rounded ${
+            isFormValid ? 'cursor-pointer' : ' opacity-50 cursor-not-allowed'
+          }`}
+          content={processing ? 'Processing...' : submitText}
+          disabled={processing}
+        />
+      </div>
+      {/* <div className='mt-2 text-center'>
         <button
           type='submit'
           disabled={processing}
@@ -84,7 +85,7 @@ export default function Form({ invoice, companies, onSubmit, submitText }) {
         >
           {submitText}
         </button>
-      </div>
+      </div> */}
     </form>
   );
 }

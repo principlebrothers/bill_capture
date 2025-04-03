@@ -18,30 +18,50 @@ const useWebcamCapture = () => {
   const retake = () => setImage(null);
   const enlarge = () => setIsEnlarged(!isEnlarged);
   const imageStyle = {
-    width: isEnlarged ? '80%' : '150px',
+    width: isEnlarged ? '90%' : '150px',
     height: 'auto',
     cursor: 'pointer',
     transition: 'width 0.3s ease',
-    maxWidth: '80%',
+    maxWidth: '100%',
   };
 
   const WebcamComponent = () => (
     <>
       {!image ? (
-        <>
+        <div className='flex flex-col items-center'>
           <Webcam audio={false} ref={webcamRef} screenshotFormat='image/jpeg' />
-          <button onClick={capture}>Capture Photo</button>
-        </>
+
+          <div className='text-sm mt-2 font-bold text-gray-700'>
+            Ensure the check is well-lit and in focus.
+          </div>
+          <button
+            type='button'
+            className='bg-blue-500 text-white px-4 py-2 rounded-md mt-4 cursor-pointer '
+            onClick={capture}
+          >
+            Capture Photo
+          </button>
+        </div>
       ) : (
-        <>
+        <div className='flex flex-col items-center flex-grow'>
           <img
             src={image}
             alt='Captured'
             style={imageStyle}
             onClick={enlarge}
           />
-          <button onClick={retake}>Retake Photo</button>
-        </>
+          <div className='text-sm mt-2 font-bold text-gray-700'>
+            Click the photo to enlarge it or return to the original size.
+          </div>
+
+          <button
+            type='button'
+            className='bg-yellow-700 text-white px-4 py-2 rounded-md mt-4 cursor-pointer'
+            onClick={retake}
+          >
+            Retake Photo
+          </button>
+        </div>
       )}
     </>
   );

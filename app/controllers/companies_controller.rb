@@ -3,7 +3,6 @@ class CompaniesController < ApplicationController
 
   inertia_share flash: -> { flash.to_hash }
 
-  # GET /companies
   def index
     @companies = Company.all
     render inertia: "Company/Index", props: {
@@ -13,14 +12,12 @@ class CompaniesController < ApplicationController
     }
   end
 
-  # GET /companies/1
   def show
     render inertia: "Company/Show", props: {
       company: serialize_company(@company)
     }
   end
 
-  # GET /companies/new
   def new
     @company = Company.new
     render inertia: "Company/New", props: {
@@ -28,14 +25,12 @@ class CompaniesController < ApplicationController
     }
   end
 
-  # GET /companies/1/edit
   def edit
     render inertia: "Company/Edit", props: {
       company: serialize_company(@company)
     }
   end
 
-  # POST /companies
   def create
     @company = Company.new(company_params)
 
@@ -46,28 +41,30 @@ class CompaniesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /companies/1
   def update
     if @company.update(company_params)
-      redirect_to @company, notice: "Company was successfully updated."
+      redirect_to companies_url, notice: "Company was successfully updated."
     else
       redirect_to edit_company_url(@company), inertia: { errors: @company.errors }
     end
   end
 
-  # DELETE /companies/1
   def destroy
-    @company.destroy!
-    redirect_to companies_url, notice: "Company was successfully destroyed."
+    begin
+      @company.destroy!
+      redirect_to companies_url, notice: "Company was successfully destroyed."
+    rescue ActiveRecord::RecordNotDestroyed => e
+      flash[:alert] = @company.errors.full_messages[0]
+      redirect_to companies_url, inertia: { notice: @company.errors }
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_company
       @company = Company.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def company_params
       params.require(:company).permit(:name)
     end

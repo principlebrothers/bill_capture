@@ -10,7 +10,12 @@ export default function Index({ companies, flash }) {
     <>
       <Head title='Companies' />
 
-      {flash.notice && <p className='text-green-600 text-center text-lg'>{flash.notice}</p>}
+      {flash.notice && (
+        <p className='text-green-600 text-center text-lg'>{flash.notice}</p>
+      )}
+      {flash.alert && (
+        <p className='text-blue-600 text-center text-lg'>{flash.alert}</p>
+      )}
 
       <h1 className='text-center font-extrabold text-4xl my-4'>Companies</h1>
       <Link href='/companies/new' className='flex items-center gap-2 mb-4 bg-indigo-700 group text-white p-2 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200 w-fit'>
@@ -31,7 +36,7 @@ export default function Index({ companies, flash }) {
               >
                 <MdOutlineAddAPhoto className='text-xl hover:text-sky-600' />
                 <span className='absolute bottom-full left-1/2 transform -translate-x-1/2 mb-1 hidden group-hover:block bg-gray-800 text-white text-xs rounded px-2 py-1'>
-                  Add Check
+                  Capture Check
                 </span>
               </Link>
               <Link

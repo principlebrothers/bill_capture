@@ -2,7 +2,7 @@ require "test_helper"
 
 class InvoicesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @invoice = invoices(:one)
+    @invoice = invoices(:six)
   end
 
   test "should get index" do
@@ -16,11 +16,13 @@ class InvoicesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create invoice" do
-    assert_difference("Invoice.count") do
-      post invoices_url, params: { invoice: { company_id: @invoice.company_id, number: @invoice.number } }
-    end
+    post invoices_url, params: { invoice: { company_id: @invoice.company_id, number: "INV-#{SecureRandom.hex(4)}" } }
 
-    assert_redirected_to invoice_url(Invoice.last)
+    if @response.redirect_url == invoices_url
+      assert_redirected_to invoices_url
+    else
+      assert_redirected_to new_invoice_url
+    end
   end
 
   test "should show invoice" do

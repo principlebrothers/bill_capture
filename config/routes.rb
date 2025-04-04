@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :invoices
-  resources :companies do
+  resources :companies, except: [ :show ] do
     resources :checks, only: [ :new, :create ]
   end
   resources :checks, only: [ :index ]

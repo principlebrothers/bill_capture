@@ -24,7 +24,7 @@ export default function New({ company }) {
           submitText='Save Company'
         />
       </article>
-      <style jsx="true">{`
+      <style jsx='true'>{`
         html,
         body {
           overflow: hidden;

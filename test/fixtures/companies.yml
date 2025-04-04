@@ -1,7 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+csir:
+  name: Csir
 
-two:
-  name: MyString
+apexoil:
+  name: Apex Oil
+
+eversend:
+  name: Ever Send
+
+google:
+  name: Google
+
+alphabet:
+  name: Alphabet
+
+teslamotors:
+  name: Tesla Motors

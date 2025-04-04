@@ -7,7 +7,12 @@ export default function Index({ invoices, flash }) {
     <>
       <Head title='Invoices' />
 
-      {flash.notice && <p style={{ color: 'green' }}>{flash.notice}</p>}
+      {flash.notice && (
+        <p className='text-green-600 text-center text-lg'>{flash.notice}</p>
+      )}
+      {flash.alert && (
+        <p className='text-blue-600 text-center text-lg'>{flash.alert}</p>
+      )}
 
       <h1 className='text-center font-extrabold text-4xl my-4'>Invoices</h1>
       <Link

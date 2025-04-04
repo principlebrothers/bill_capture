@@ -42,7 +42,7 @@ class InvoicesController < ApplicationController
     @invoice = Invoice.new(invoice_params)
 
     if @invoice.save
-      redirect_to @invoice, notice: "Invoice was successfully created."
+      redirect_to invoices_url, notice: "Invoice was successfully created."
     else
       redirect_to new_invoice_url, inertia: { errors: @invoice.errors }
     end

@@ -5,6 +5,7 @@ class Check < ApplicationRecord
   has_many :invoices, through: :check_invoices
 
   validates :number, presence: true
+  validates :number, uniqueness: { scope: :company_id, message: "Check number must be unique for the company" }
   validates :image, presence: true
 
   def self.retrieve_checks

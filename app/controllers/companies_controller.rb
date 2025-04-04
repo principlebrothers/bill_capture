@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: %i[ show edit update destroy ]
+  before_action :set_company, only: %i[ edit update destroy ]
 
   inertia_share flash: -> { flash.to_hash }
 
@@ -9,12 +9,6 @@ class CompaniesController < ApplicationController
       companies: @companies.map do |company|
         serialize_company(company)
       end
-    }
-  end
-
-  def show
-    render inertia: "Company/Show", props: {
-      company: serialize_company(@company)
     }
   end
 

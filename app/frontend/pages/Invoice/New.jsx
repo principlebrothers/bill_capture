@@ -15,7 +15,7 @@ export default function New({ invoice, companies }) {
           <IoMdArrowRoundBack />
         </Link>
 
-        <h1 className='justify-self-center text-2xl my-4'>New invoice</h1>
+        <h1 className='justify-self-center text-2xl my-4'>New Invoice</h1>
 
         <Form
           invoice={invoice}

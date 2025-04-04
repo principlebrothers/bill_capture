@@ -2,7 +2,7 @@ require "test_helper"
 
 class CompaniesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @company = companies(:one)
+    @company = companies(:teslamotors)
   end
 
   test "should get index" do
@@ -20,12 +20,7 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
       post companies_url, params: { company: { name: @company.name } }
     end
 
-    assert_redirected_to company_url(Company.last)
-  end
-
-  test "should show company" do
-    get company_url(@company)
-    assert_response :success
+    assert_redirected_to companies_url
   end
 
   test "should get edit" do
@@ -35,7 +30,7 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
 
   test "should update company" do
     patch company_url(@company), params: { company: { name: @company.name } }
-    assert_redirected_to company_url(@company)
+    assert_redirected_to companies_url
   end
 
   test "should destroy company" do

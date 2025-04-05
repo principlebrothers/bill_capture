@@ -84,7 +84,7 @@ production:
     <<: *default
     database: bill_capture_production
     username: bill_capture
-    password: '<%= ENV["DATABASE_PASSWORD"] %>'
+    password: '<%= ENV["DATABASE_URL"] %>'
   cache:
     <<: *primary_production
     database: bill_capture_production_cache

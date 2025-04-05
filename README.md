@@ -6,13 +6,14 @@
 
 ## Live Demo
 
-  [Coming soon...](https://)
+  [Bill Capture live 🎊](https://bill-capture.onrender.com/companies)
 
 ## Built With
 
 - Inertia - React
 - Ruby on Rails
 - Tailwind CSS
+- PostgreSQL
 
 ## Screenshots
 

@@ -50,6 +50,7 @@
 - Ruby 3.3.4
 - Rails 8.0.2
 - MySQL
+- PostgreSQL
 
 #### Repository
 

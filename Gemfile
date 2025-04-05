@@ -2,8 +2,8 @@ source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.2"
-# Use mysql2 as the database for Active Record
-gem "mysql2", "~> 0.5"
+# Use pg as the database for Active Record
+gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
@@ -46,7 +46,6 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  gem "faker", git: "https://github.com/faker-ruby/faker.git", branch: "main"
 end
 
 group :test do
@@ -54,6 +53,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "faker", git: "https://github.com/faker-ruby/faker.git", branch: "main"
 
 gem "inertia_rails", "~> 3.7"
 

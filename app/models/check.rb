@@ -11,9 +11,9 @@ class Check < ApplicationRecord
   def self.retrieve_checks
     joins(:company, check_invoices: :invoice)
       .select(
-        "checks.id, checks.number, companies.name AS company_name, GROUP_CONCAT(invoices.number) AS invoice_numbers, checks.created_at"
+        "checks.id, checks.number, companies.name AS company_name, STRING_AGG(invoices.number, ', ') AS invoice_numbers, checks.created_at"
       )
-      .group("checks.number, checks.id, companies.name, checks.created_at")
+      .group("checks.id, checks.number, companies.name, checks.created_at")
       .order(created_at: :desc)
   end
 

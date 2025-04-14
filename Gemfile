@@ -56,6 +56,6 @@ end
 
 gem "faker", git: "https://github.com/faker-ruby/faker.git", branch: "main"
 
-gem "inertia_rails", "~> 3.7"
+gem "inertia_rails", "~> 3.8"
 
 gem "vite_rails", "~> 3.0"
